@@ -11,6 +11,13 @@ router.get('/employeeanswers', (req, res) => {
     res.render('employee_check_answers')
 })
 
+router.get('/createsalesemp', (req, res) => {
+    res.render('create_sales_employee')
+})
+
+router.get('/sales_emp_check_answers', (req, res) => {
+    res.render('sales_emp_check_answers')
+})
 
 router.get('/:team', (req, res) => {
     if(req.params.team == 'hr'){
