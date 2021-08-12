@@ -47,14 +47,13 @@ exports.getEmployeesByDepartment = async () => {
 
  exports.getEmployees = () => { 
      return this.employees(); 
-<<<<<<< HEAD
     }
 
 exports.getFinancialReport = async () => {
     console.log("reached employeedata");
     return await db.query(
         "SELECT employees.empID, empName, department, salary, commissionRate, totalSales FROM employees LEFT JOIN salesEmployees ON employees.empID = salesEmployees.empID"
-=======
+    )
 }
 
 exports.getAllEmployees = async () => {
@@ -66,6 +65,5 @@ exports.getAllEmployees = async () => {
 exports.getSalesHighestTotal = async () => {
     return await db.query(
         "SELECT * FROM employees join salesEmployees using (empID) ORDER BY totalSales DESC"
->>>>>>> ab59b1c77571f65c5d616eb03ff6c1167d76ac2c
     )
 }
