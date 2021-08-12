@@ -1,0 +1,31 @@
+
+{% extends "layout_unbranded.html" %}
+
+{% block pageTitle %}
+  Employee Manager
+{% endblock %}
+
+{% block content %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "/"
+}) }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Sales Team Manager - Services
+      <p>
+        As a Manager of the sales team you can utilise several services. If the service you wishe to use is not available, please ensure you have chosen the correct portal, or notify the GinormousGroundhogs team.
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="#">Highest Sales Total</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}
