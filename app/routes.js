@@ -3,15 +3,21 @@ const router = express.Router()
 const employeedata = require('./employeedata.js')
 
 // Add your routes here - above the module.exports line
-
-router.get('/sales_emp_check_answers', (req, res) => {
-    res.render('sales_emp_check_answers')
+router.get("/submitemployee", async (req, res) => {
+    console.log("body: " + JSON.stringify(req.session))
+    res.render('employee_submit', { result: await employeedata.insertEmployee(req.session.data, "technical") })
 });
 
-router.get('/employee_by_department', async (req, res) => { 
-    res.render('employee_by_department', { employees: await employeedata.getEmployeesByDepartment() } );
-    testTable = employeedata.getEmployeesByDepartment() 
-    console.log(testTable); 
+router.get("/submitsalesemp", async (req, res) => {
+    console.log("body: " + JSON.stringify(req.session.data))
+    res.render('sales_emp_submit', { result: await employeedata.insertSalesEmployee(req.session.data) })
+});
+
+
+router.get('/employee_by_department', async (req, res) => {
+    res.render('employee_by_department', { employees: await employeedata.getEmployeesByDepartment() });
+    testTable = employeedata.getEmployeesByDepartment()
+    console.log(testTable);
 });
 
 router.get('/list_employees', async (req,res) =>{
@@ -41,22 +47,20 @@ router.get('/highest_sales', async (req, res) => {
     res.render('highest_sales', {employees: await employeedata.getSalesHighestTotal()});
 });
 
-
-
 router.get('/:team', (req, res) => {
-    if(req.params.team == 'hr'){
+    if (req.params.team == 'hr') {
         res.render('hr_options')
-    } else if(req.params.team == 'finance'){
+    } else if (req.params.team == 'finance') {
         res.render('fn_options')
 
-    } else if(req.params.team == 'sales'){
+    } else if (req.params.team == 'sales') {
         res.render('s_options')
-        
-    } else if(req.params.team == 'talent'){
+
+    } else if (req.params.team == 'talent') {
         res.render('tm_options')
-        
+
     }
-   
+
 });
 
 
