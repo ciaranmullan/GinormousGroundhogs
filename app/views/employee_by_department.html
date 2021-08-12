@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% from "govuk/components/table/macro.njk" import govukTable %}
+
 {% block content %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
@@ -12,7 +13,7 @@
   text: "Back",
   href: "/hr"
 }) }}
-<h2 class="govuk-heading-m">Employees by department</h2>
+<h2 class="govuk-heading-l">Employees by department</h2>
 {% if employees and employees.length > 0 %} 
 {% set employeerows = [] %} 
 {% for employee in employees | sort(attribute='department') %}
@@ -23,6 +24,6 @@
     rows: employeerows }) 
 }} 
 {% else %}
-There are no cities. 
+There are no employees. 
 {% endif %}
 {% endblock %}

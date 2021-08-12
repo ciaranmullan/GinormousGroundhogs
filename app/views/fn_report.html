@@ -1,0 +1,27 @@
+{% extends "layout_unbranded.html" %}
+
+{% block pageTitle %}
+  Financial Report
+{% endblock %}
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% block content %}
+{{ govukBackLink({
+  text: "Back",
+  href: "/finance"
+}) }}
+<h2 class="govuk-heading-l">Financial Report for all employees</h2>
+{% if employees and employees.length > 0 %} 
+{% set employeerows = [] %} 
+{% for employee in employees | sort(attribute='empID') %}
+{% set grossPay = (((employee.salary / 12) * 0.75) + (employee.commissionRate * employee.totalSales)) %}
+{% set employeerows = (employeerows.push([{ text: employee.empID }, {text: employee.empName}, {text: employee.department}, {text: grossPay | round(2)}]), employeerows) %} 
+{% endfor %} 
+{{govukTable({ 
+    head: [ { text: "ID" },{ text: "Name" },{ text: "Department" },{text: "Gross pay"} ], 
+    rows: employeerows }) 
+}} 
+{% else %}
+There are no employees. 
+{% endif %}
+{% endblock %}

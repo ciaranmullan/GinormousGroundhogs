@@ -1,0 +1,12 @@
+{% extends "layout_unbranded.html" %}
+
+{% block content %}
+  {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "/"
+  }) }}
+
+  {% block info %}{% endblock %}
+{% endblock %}

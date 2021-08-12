@@ -1,6 +1,8 @@
 const mysql = require('mysql'); 
 const dbconfig = require('./dbconfig.json');
 const util = require ('util');
+const exp = require('constants');
+
 const db = wrapDB(dbconfig);
 
 
@@ -22,7 +24,7 @@ const db = wrapDB(dbconfig);
 exports.getEmployeesByDepartment = async () => { 
     return await db.query( 
         "SELECT empID, empName, department" 
-        + " FROM employees GROUP BY department, empID LIMIT 5" ) 
+        + " FROM employees GROUP BY department, empID" ) 
  }
 
  exports.insertEmployee = async (data, department) => {
@@ -45,6 +47,13 @@ exports.getEmployeesByDepartment = async () => {
 
  exports.getEmployees = () => { 
      return this.employees(); 
+    }
+
+exports.getFinancialReport = async () => {
+    console.log("reached employeedata");
+    return await db.query(
+        "SELECT employees.empID, empName, department, salary, commissionRate, totalSales FROM employees LEFT JOIN salesEmployees ON employees.empID = salesEmployees.empID"
+    )
 }
 
 exports.getAllEmployees = async () => {
