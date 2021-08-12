@@ -2,6 +2,7 @@ const mysql = require('mysql');
 const dbconfig = require('./dbconfig.json'); 
 const util = require ('util');
 const exp = require('constants');
+
 const db = wrapDB(dbconfig);
 
 
@@ -31,7 +32,8 @@ exports.getEmployeesByDepartment = async () => {
     }
 
 exports.getFinancialReport = async () => {
+    console.log("reached employeedata");
     return await db.query(
-        "SELECT empID, empName, department, salary FROM employees"
+        "SELECT employees.empID, empName, department, salary, commissionRate, totalSales FROM employees LEFT JOIN salesEmployees ON employees.empID = salesEmployees.empID"
     )
 }
