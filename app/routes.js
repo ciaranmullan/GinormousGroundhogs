@@ -30,6 +30,10 @@ router.get('/sales_emp_check_answers', (req, res) => {
     res.render('sales_emp_check_answers')
 });
 
+router.get('/highest_sales', async (req, res) => {
+    res.render('highest_sales', {employees: await employeedata.getSalesHighestTotal()});
+});
+
 router.get('/:team', (req, res) => {
     if(req.params.team == 'hr'){
         res.render('hr_options')

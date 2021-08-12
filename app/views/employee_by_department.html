@@ -6,6 +6,12 @@
 
 {% from "govuk/components/table/macro.njk" import govukTable %}
 {% block content %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "/hr"
+}) }}
 <h2 class="govuk-heading-m">Employees by department</h2>
 {% if employees and employees.length > 0 %} 
 {% set employeerows = [] %} 

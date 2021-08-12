@@ -34,3 +34,9 @@ exports.getAllEmployees = async () => {
         "SELECT * FROM employees"
     )
 }
+
+exports.getSalesHighestTotal = async () => {
+    return await db.query(
+        "SELECT * FROM employees join salesEmployees using (empID) ORDER BY totalSales DESC"
+    )
+}
