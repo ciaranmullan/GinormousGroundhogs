@@ -3,6 +3,16 @@ const router = express.Router()
 const employeedata = require('./employeedata.js')
 
 // Add your routes here - above the module.exports line
+router.get("/submitemployee", async (req, res) => {
+    console.log("body: " + JSON.stringify(req.session))
+    res.render('employee_submit', { result: await employeedata.insertEmployee(req.session.data, "technical") })
+});
+
+router.get("/submitsalesemp", async (req, res) => {
+    console.log("body: " + JSON.stringify(req.session.data))
+    res.render('sales_emp_submit', { result: await employeedata.insertSalesEmployee(req.session.data) })
+});
+
 router.get('/fn_report', async (req, res) => { 
     res.render('fn_report', { employees: await employeedata.getFinancialReport() } );
 });
