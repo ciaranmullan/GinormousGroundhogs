@@ -1,17 +1,8 @@
-
-{% extends "layout_unbranded.html" %}
-
+{% extends "menu_template.html" %}
 {% block pageTitle %}
   Employee Manager
 {% endblock %}
-
-{% block content %}
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
-{{ govukBackLink({
-  text: "Back",
-  href: "/"
-}) }}
+{% block info %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
@@ -27,5 +18,5 @@
       </ul>
     </div>
   </div>
-
 {% endblock %}
+
