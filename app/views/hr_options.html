@@ -1,0 +1,37 @@
+
+{% extends "layout_unbranded.html" %}
+
+{% block pageTitle %}
+  Employee Manager
+{% endblock %}
+
+{% block content %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "/"
+}) }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        HR Team Member - Services
+      <p>
+        As a member of the HR team you can utilise several services. If the service you wishe to use is not available, please ensure you have chosen the correct portal, or notify the GinormousGroundhogs team.
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="/createemployee">Insert New Employee</a>
+        </li>
+        <li>
+          <a href="/createsalesemp">Insert New Sales Employee</a>
+        </li>
+        <li>
+          <a href="#">Generate Department Report</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}
