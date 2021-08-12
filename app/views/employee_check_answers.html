@@ -5,7 +5,12 @@ Check your answers
 {% endblock %}
 
 {% block content %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
+{{ govukBackLink({
+  text: "Back",
+  href: "/createemployee"
+}) }}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">
@@ -91,11 +96,11 @@ Check your answers
       Change answers
     </a>
   </p>
-
+<form method="POST" action="/submitemployee">
 {{ govukButton({
     text: "Confirm and send",
     element: button,
     type: submit
   }) }}
-
+</form>
 {% endblock %}
