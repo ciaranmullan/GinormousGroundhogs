@@ -1,7 +1,0 @@
-{
-    "connectionLimit": 10,
-    "host": "academy2020.cpc8rvmbbd9k.eu-west-2.rds.amazonaws.com",
-    "user": "eman",
-    "password": "tempPwd!",
-    "database": "Employees_gg"
-    }
