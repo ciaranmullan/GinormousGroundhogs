@@ -1,0 +1,116 @@
+{% extends "layout_unbranded.html"%}
+
+{% block pageTitle %} 
+  Create Employee
+{% endblock %} 
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+
+{% if errormessage %} 
+<div class="govuk-error-message">{{ errormessage }}</div> 
+{% endif %}
+
+<form method="POST" action="/employeeanswers">
+{% call govukFieldset({
+  legend: {
+    text: "Enter Employee Details",
+    classes: "govuk-fieldset__legend--l",
+    isPageHeading: true
+  }
+}) %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Full name"
+  },
+  id: "full-name",
+  name: "full-name",
+  autocomplete: "name",
+  spellcheck: false,
+  value: data["full-name"]
+}) }}
+
+  {{ govukInput({
+    label: {
+      html: 'Address'
+    },
+    id: "addresss",
+    name: "address",
+    value: data["address"]
+  }) }}
+
+  {% from "govuk/components/input/macro.njk" import govukInput %}
+
+  {{ govukInput({
+    label: {
+      text: "National Insurance number"
+    },
+    hint: {
+      text: "For example, ‘QQ 12 34 56 C’."
+    },
+    classes: "govuk-input--width-10",
+    id: "nin",
+    name: "nin",
+    value: data["nin"],
+    spellcheck: false
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Sort code"
+    },
+    classes: "govuk-input--width-5",
+    hint: {
+      text: "Must be 6 digits long"
+    },
+    id: "sortcode",
+    name: "sortcode",
+    value: data["sortcode"],
+    inputmode: "numeric",
+    pattern: "[0-9]*",
+    spellcheck: false
+  }) }}
+  
+  {{ govukInput({
+    label: {
+      text: "Account number"
+    },
+    classes: "govuk-input--width-10",
+    hint: {
+      text: "Must be between 6 and 8 digits long"
+    },
+    id: "accno",
+    name: "accno",
+    value: data["accno"],
+    inputmode: "numeric",
+    pattern: "[0-9]*",
+    spellcheck: false
+  }) }}
+  
+
+  {{ govukInput({
+    label: {
+      text: "Starting Salary"
+    },
+    id: "salary",
+    name: "salary",
+    value: data["salary"],
+    classes: "govuk-input--width-10"
+  }) }}
+  
+  {{ govukButton({
+    text: "Save and continue",
+    element: button,
+    type: submit
+  }) }}
+
+{% endcall %}
+
+</form>
+
+{% endblock %}
