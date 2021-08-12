@@ -1,0 +1,36 @@
+{% extends "layout_unbranded.html" %}
+
+{% block pageTitle %}
+  Sales Employee with Highest Sales Total
+{% endblock %}
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% block content %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "/sales"
+}) }}
+<h2 class="govuk-heading-m">Sales Employee with Highest Sales Total</h2>
+<p>Employee with the highes sales total is: {{employees[0].empName}}</p>
+{% if employees and employees.length > 0 %} 
+{% set employeerows = [] %} 
+{% for employee in employees | sort(attribute='department') %}
+{% set employeerows = (employeerows.push([{ text: employee.empID }, {text: employee.empName}, {text: employee.department}, {text: employee.totalSales}]), employeerows) %} 
+{% endfor %} 
+{{govukTable({ 
+    head: [ { text: "ID" },{ text: "Name" },{ text: "Department" },{ text: " Total Sales"}], 
+    rows: employeerows }) 
+}} 
+{% else %}
+There are no cities. 
+{% endif %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{{ govukBackLink({
+  text: "Back to Start",
+  href: "/"
+}) }}
+
+{% endblock %}

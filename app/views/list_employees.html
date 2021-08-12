@@ -1,29 +1,24 @@
 {% extends "layout_unbranded.html" %}
 
 {% block pageTitle %}
-  Employees by Department
+  Employees
 {% endblock %}
 
 {% from "govuk/components/table/macro.njk" import govukTable %}
-
 {% block content %}
-<<<<<<< HEAD
-=======
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
->>>>>>> ab59b1c77571f65c5d616eb03ff6c1167d76ac2c
 
 {{ govukBackLink({
   text: "Back",
-  href: "/hr"
+  href: "/"
 }) }}
-<<<<<<< HEAD
-<h2 class="govuk-heading-l">Employees by department</h2>
-=======
-<h2 class="govuk-heading-l">Employees by department</h2>
->>>>>>> ab59b1c77571f65c5d616eb03ff6c1167d76ac2c
+<h2 class="govuk-heading-m">All Employees</h2>
+<p>
+  {{employees.length}} results in table
+</p>
 {% if employees and employees.length > 0 %} 
 {% set employeerows = [] %} 
-{% for employee in employees | sort(attribute='department') %}
+{% for employee in employees | sort(attribute='name') %}
 {% set employeerows = (employeerows.push([{ text: employee.empID }, {text: employee.empName}, {text: employee.department}]), employeerows) %} 
 {% endfor %} 
 {{govukTable({ 
@@ -31,6 +26,6 @@
     rows: employeerows }) 
 }} 
 {% else %}
-There are no employees. 
+There are no cities. 
 {% endif %}
 {% endblock %}
