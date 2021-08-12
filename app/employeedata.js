@@ -27,4 +27,10 @@ exports.getEmployeesByDepartment = async () => {
 
  exports.getEmployees = () => { 
      return this.employees(); 
-    }
+}
+
+exports.getAllEmployees = async () => {
+    return await db.query(
+        "SELECT * FROM employees"
+    )
+}
