@@ -23,5 +23,5 @@
 hs_err_pid*
 node_modules
 
-dbconfig.json
-node_modules
+app/dbconfig.json
+

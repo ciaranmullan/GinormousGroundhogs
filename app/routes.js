@@ -20,12 +20,17 @@ router.get('/employee_by_department', async (req, res) => {
     console.log(testTable);
 });
 
+router.get('/list_employees', async (req,res) =>{
+    res.render('list_employees', {employees: await employeedata.getAllEmployees()});
+}); 
+
+
 router.get('/createemployee', (req, res) => {
     res.render('create_employee')
 });
 
 
-router.get('/employeeanswers', (req, res) => {
+router.get('/employee_check_answers', (req, res) => {
     console.log("check answers")
     res.render('employee_check_answers')
 });
@@ -36,6 +41,10 @@ router.get('/createsalesemp', (req, res) => {
 
 router.get('/sales_emp_check_answers', (req, res) => {
     res.render('sales_emp_check_answers')
+});
+
+router.get('/highest_sales', async (req, res) => {
+    res.render('highest_sales', {employees: await employeedata.getSalesHighestTotal()});
 });
 
 router.get('/:team', (req, res) => {
@@ -55,7 +64,7 @@ router.get('/:team', (req, res) => {
 });
 
 
-module.exports = router
 
+module.exports = router
 
 

@@ -1,7 +1,7 @@
 {% extends "layout_unbranded.html" %}
 
 {% block pageTitle %}
-  Employees by Department
+  Employees
 {% endblock %}
 
 {% from "govuk/components/table/macro.njk" import govukTable %}
@@ -10,12 +10,15 @@
 
 {{ govukBackLink({
   text: "Back",
-  href: "/hr"
+  href: "/"
 }) }}
-<h2 class="govuk-heading-m">Employees by department</h2>
+<h2 class="govuk-heading-m">All Employees</h2>
+<p>
+  {{employees.length}} results in table
+</p>
 {% if employees and employees.length > 0 %} 
 {% set employeerows = [] %} 
-{% for employee in employees | sort(attribute='department') %}
+{% for employee in employees | sort(attribute='name') %}
 {% set employeerows = (employeerows.push([{ text: employee.empID }, {text: employee.empName}, {text: employee.department}]), employeerows) %} 
 {% endfor %} 
 {{govukTable({ 
