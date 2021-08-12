@@ -1,7 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const employeedata = require('./employeedata.js')
+
 // Add your routes here - above the module.exports line
+
+router.get('/sales_emp_check_answers', (req, res) => {
+    res.render('sales_emp_check_answers')
+});
+
 router.get('/employee_by_department', async (req, res) => { 
     res.render('employee_by_department', { employees: await employeedata.getEmployeesByDepartment() } );
     testTable = employeedata.getEmployeesByDepartment() 
@@ -19,6 +25,7 @@ router.get('/createemployee', (req, res) => {
 
 
 router.get('/employee_check_answers', (req, res) => {
+    console.log("check answers")
     res.render('employee_check_answers')
 });
 
@@ -33,6 +40,8 @@ router.get('/sales_emp_check_answers', (req, res) => {
 router.get('/highest_sales', async (req, res) => {
     res.render('highest_sales', {employees: await employeedata.getSalesHighestTotal()});
 });
+
+
 
 router.get('/:team', (req, res) => {
     if(req.params.team == 'hr'){
@@ -53,3 +62,5 @@ router.get('/:team', (req, res) => {
 
 
 module.exports = router
+
+

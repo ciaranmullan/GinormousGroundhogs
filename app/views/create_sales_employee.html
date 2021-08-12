@@ -8,20 +8,15 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block content %}
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
-{{ govukBackLink({
-  text: "Back",
-  href: "/hr"
-}) }}
 {% if errormessage %} 
 <div class="govuk-error-message">{{ errormessage }}</div> 
 {% endif %}
 
-<form method="POST" action="/employeeanswers">
+<form method="POST" action="/sales_emp_check_answers">
 {% call govukFieldset({
   legend: {
-    text: "Enter Employee Details",
+    text: "Enter Sales Employee Details",
     classes: "govuk-fieldset__legend--l",
     isPageHeading: true
   }
@@ -107,7 +102,30 @@
     value: data["salary"],
     classes: "govuk-input--width-10"
   }) }}
-  
+
+  {{ govukInput({
+    label: {
+      text: "Commission Rate"
+    },
+    id: "commission",
+    name: "commission",
+    value: data["commission"],
+    classes: "govuk-input--width-10"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Total Sales"
+    },
+    hint: {
+        text: "Their total sales for the current period"
+      },
+    id: "sales",
+    name: "sales",
+    value: data["sales"],
+    classes: "govuk-input--width-10"
+  }) }}
+
   {{ govukButton({
     text: "Save and continue",
     element: button,
